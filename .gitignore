@@ -55,3 +55,17 @@ share/
 # Custom venvs
 *venv*
 
+
+# Sensitive data
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.db
+credentials.json
+client_secret*.json
+*.key
+*.pem
+*.pfx
+*.cert
+
