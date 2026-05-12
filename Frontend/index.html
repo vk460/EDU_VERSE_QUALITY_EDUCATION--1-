@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduVerse | The Luminescent Archive</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Orbitron:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "error-dim": "#d7383b",
+                        "on-error": "#490006",
+                        "on-primary": "#005762",
+                        "error": "#ff716c",
+                        "inverse-on-surface": "#565554",
+                        "surface": "#0e0e0e",
+                        "secondary-container": "#6e208c",
+                        "surface-container": "#1a1919",
+                        "background": "#0e0e0e",
+                        "on-secondary": "#4c0068",
+                        "on-primary-fixed-variant": "#005762",
+                        "primary-dim": "#00d4ec",
+                        "primary": "#81ecff",
+                        "secondary-dim": "#ce7eec",
+                        "on-secondary-container": "#f1bfff",
+                        "secondary-fixed": "#f2c1ff",
+                        "surface-container-high": "#201f1f",
+                        "on-secondary-fixed": "#580078",
+                        "on-surface-variant": "#adaaaa",
+                        "secondary": "#dd8bfb",
+                        "primary-fixed": "#00e3fd",
+                        "on-primary-container": "#004d57",
+                        "tertiary": "#eaffb8",
+                        "surface-container-lowest": "#000000",
+                        "surface-variant": "#262626",
+                        "surface-dim": "#0e0e0e",
+                        "surface-container-highest": "#262626",
+                        "outline": "#777575",
+                        "surface-container-low": "#131313",
+                        "on-surface": "#ffffff",
+                        "inverse-surface": "#fcf8f8",
+                        "on-tertiary-container": "#445d00",
+                        "on-tertiary-fixed-variant": "#4c6800",
+                        "on-tertiary": "#4b6600",
+                        "on-secondary-fixed-variant": "#792c97",
+                        "surface-tint": "#81ecff",
+                        "tertiary-fixed": "#befc00",
+                        "primary-fixed-dim": "#00d4ec",
+                        "outline-variant": "#494847",
+                        "tertiary-dim": "#b2ed00",
+                        "on-tertiary-fixed": "#354900",
+                        "on-background": "#ffffff",
+                        "inverse-primary": "#006976",
+                        "tertiary-container": "#befc00",
+                        "on-error-container": "#ffa8a3",
+                        "secondary-fixed-dim": "#ebadff",
+                        "error-container": "#9f0519",
+                        "tertiary-fixed-dim": "#b2ed00",
+                        "on-primary-fixed": "#003840",
+                        "primary-container": "#00e3fd",
+                        "surface-bright": "#2c2c2c"
+                    },
+                    fontFamily: {
+                        "headline": ["Orbitron", "Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(26, 25, 25, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(129, 236, 255, 0.15);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #81ecff, #dd8bfb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <link rel="stylesheet" href="electric-border.css">
+    <link rel="stylesheet" href="border-glow.css">
+    <link rel="stylesheet" href="magic-bento.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/@splinetool/viewer@latest/build/spline-viewer.js" type="module"></script>
+    <script src="electric-border.js" type="module" defer></script>
+    <script src="border-glow.js" type="module" defer></script>
+    <script src="magic-bento.js" type="module" defer></script>
+    <script type="module" src="/main.tsx"></script>
+
+    <style>
+        /* Remove Spline Watermark */
+        spline-viewer { --logo-display: none !important; }
+        
+
+        /* ElectricBorder effect */
+        @keyframes ec-pulse { 0%,100% { box-shadow:0 0 5px 1px var(--ec,#7df9ff), inset 0 0 5px 1px var(--ec,#7df9ff); } 50% { box-shadow:0 0 16px 4px var(--ec,#7df9ff), inset 0 0 12px 2px var(--ec,#7df9ff); } }
+        @keyframes ec-sweep { to { --cursor-angle:405deg; } }
+        .electric-border { border-radius:16px; animation:ec-pulse 2.5s ease-in-out infinite; position:relative; }
+        .electric-border::before { content:''; position:absolute; inset:-2px; border-radius:inherit; background:conic-gradient(from 0deg, var(--ec,#7df9ff) 0%, transparent 25%, var(--ec,#7df9ff) 50%, transparent 75%,var(--ec,#7df9ff)); animation:ec-sweep 3s linear infinite; z-index:-1; opacity:0.6; }
+
+        /* Glassmorphic launch button */
+        .launch-btn {
+            display:inline-flex; align-items:center; gap:8px; padding:10px 22px; border-radius:12px;
+            background:rgba(255,255,255,0.06); backdrop-filter:blur(12px);
+            border:1px solid rgba(129,236,255,0.3); color:#81ecff;
+            font-size:0.65rem; font-family:'Orbitron','Space Grotesk',sans-serif;
+            letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; font-weight:700;
+            transition:all 0.3s ease; white-space:nowrap;
+        }
+        .launch-btn:hover { background:rgba(129,236,255,0.1); border-color:rgba(129,236,255,0.6); box-shadow:0 0 16px rgba(129,236,255,0.2); transform:translateY(-2px); }
+
+    /* Spline hero */
+    .hero-spline-wrap { position:relative; width:100%; height:520px; border-radius:20px; overflow:hidden; border:1px solid rgba(129,236,255,0.12); box-shadow:0 0 60px rgba(129,236,255,0.07); }
+    .hero-spline-wrap::after { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 50% 100%, rgba(14,14,14,0.5) 0%, transparent 70%); }
+
+    /* GradientBlinds overlay (CSS simulation) */
+    .gradient-blinds {
+        position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+    }
+    .gradient-blinds::before {
+        content:''; position:absolute; inset:0;
+        background:repeating-linear-gradient(90deg, rgba(129,236,255,0.03) 0px, rgba(129,236,255,0.03) 1px, transparent 1px, transparent 80px);
+        animation:blinds-move 12s linear infinite;
+    }
+    @keyframes blinds-move { from{transform:translateX(0)} to{transform:translateX(-80px)} }
+</style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+<!-- NAVIGATION SHELL -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl dark:bg-[#0e0e0e]/60 shadow-[0_0_20px_rgba(0,229,255,0.08)]">
+<div class="flex justify-between items-center px-8 py-5 max-w-7xl mx-auto">
+<!-- Logo left -->
+<a href="/index.html" class="flex items-center gap-3 group">
+    <div class="hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_12px_rgba(0,229,255,0.3)]">
+        <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4 5V11C4 16.5 7.5 20.5 12 22C16.5 20.5 20 16.5 20 11V5L12 2Z" fill="url(#navbar-logo-grad)"/>
+            <path d="M9 10H15M9 13H15M9 16H13" stroke="#0e0e0e" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="7" r="1.5" fill="#0e0e0e"/>
+            <defs>
+                <linearGradient id="navbar-logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#00E5FF"/>
+                    <stop offset="1" stop-color="#dd8bfb"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+    <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-[#00E5FF] to-[#dd8bfb] bg-clip-text text-transparent" style="font-family:'Orbitron',sans-serif">EduVerse</span>
+</a>
+<!-- Right buttons -->
+<div class="flex items-center gap-3">
+    <a href="features.html" class="font-label text-xs uppercase tracking-widest text-slate-400 hover:text-white transition-colors px-3 py-2">Agents</a>
+    <button id="view-history-btn" class="font-label text-xs uppercase tracking-widest text-slate-400 hover:text-[#00E5FF] border border-white/10 hover:border-[#00E5FF]/40 px-4 py-2 rounded-lg transition-all">View History</button>
+    <button id="login-btn" onclick="handleLogin()" class="bg-gradient-to-r from-[#00E5FF] to-[#dd8bfb] text-[#0e0e0e] font-bold py-2 px-5 rounded-lg text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_12px_rgba(0,229,255,0.3)]">Login</button>
+    <div id="logged-in-btns" class="hidden flex items-center gap-2">
+        <button onclick="handleProfile()" class="flex items-center gap-2 bg-white/5 border border-[#00E5FF]/30 text-[#00E5FF] font-bold py-2 px-4 rounded-lg text-xs uppercase tracking-widest hover:bg-[#00E5FF]/10 transition-all">
+            <span class="material-symbols-outlined text-sm">account_circle</span> Profile
+        </button>
+        <button onclick="handleLogout()" class="text-slate-400 hover:text-red-400 border border-white/10 hover:border-red-400/40 py-2 px-4 rounded-lg text-xs uppercase tracking-widest transition-all font-label">Logout</button>
+    </div>
+</div>
+</div>
+</nav>
+<script>
+    function handleLogin() {
+        window.location.href = 'auth.html';
+    }
+    function handleLogout() {
+        localStorage.removeItem('eduverse_logged_in');
+        updateAuthState();
+    }
+    function handleProfile() { window.location.href = 'profile.html'; }
+    function updateAuthState() {
+        const loggedIn = localStorage.getItem('eduverse_logged_in') === 'true';
+        document.getElementById('login-btn')?.classList.toggle('hidden', loggedIn);
+        document.getElementById('logged-in-btns')?.classList.toggle('hidden', !loggedIn);
+    }
+    document.addEventListener('DOMContentLoaded', updateAuthState);
+</script>
+<!-- HERO SECTION -->
+<main class="relative pt-32 pb-20 px-8 min-h-screen flex flex-col items-center justify-center overflow-hidden">
+<!-- WebGL Background Mount -->
+<div id="hero-bg-mount"></div>
+<!-- Ambient Background Light -->
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 blur-[120px] rounded-full"></div>
+<div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- Left Content -->
+<div class="z-10 space-y-6 max-w-2xl">
+    <h1 class="text-5xl md:text-7xl font-headline font-bold leading-tight tracking-[-0.03em]">
+        The Future of <span class="text-gradient">Personalized Mastery</span>
+    </h1>
+    <p class="text-on-surface-variant text-xl leading-relaxed opacity-90">
+        EduVerse is an intelligent platform for personalized self-learning and academic excellence. Accelerate your roadmap with AI-driven insights.
+    </p>
+    <div class="flex flex-wrap gap-4 pt-4">
+        <a href="features.html" class="bg-gradient-to-r from-[#00E5FF] to-[#dd8bfb] text-[#0e0e0e] font-bold py-4 px-10 rounded-xl text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_25px_rgba(0,229,255,0.4)]">
+            Get Started
+        </a>
+    </div>
+</div>
+<!-- Right Content: Spline 3D Robot -->
+<div class="relative flex items-center justify-center">
+    <div class="hero-spline-wrap w-full">
+        <spline-viewer
+            url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+            style="width:100%;height:520px;"
+            logo="false"
+            logo-display="none">
+        </spline-viewer>
+    </div>
+    <script>
+        // Force hide Spline logo in shadow DOM
+        const hideSplineLogo = () => {
+            const viewers = document.querySelectorAll('spline-viewer');
+            viewers.forEach(viewer => {
+                if (viewer.shadowRoot) {
+                    const logo = viewer.shadowRoot.querySelector('#logo');
+                    if (logo) logo.style.display = 'none';
+                }
+            });
+        };
+        setInterval(hideSplineLogo, 1000);
+    </script>
+</div>
+</div>
+<!-- FloatingLines canvas -->
+<canvas id="floating-lines-canvas"></canvas>
+<!-- GradientBlinds overlay -->
+<div class="gradient-blinds"></div>
+</main>
+    <!-- MAGIC BENTO SECTION -->
+    <section class="py-24 bg-[#060010] relative overflow-hidden" id="bento-overview">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-headline font-bold mb-4">Core <span class="text-gradient">Architecture</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Neural integration across 6 specialized functional nodes.</p>
+            </div>
+            
+            <div id="magic-grid" class="card-grid-v bento-section">
+                <!-- Card 1 -->
+                <div class="magic-bento-card-v group">
+                    <div class="magic-bento-card-v__header">
+                        <div class="magic-bento-card-v__label">Pillars</div>
+                    </div>
+                    <div class="magic-bento-card-v__content">
+                        <div class="w-20 h-20 mb-4 mx-auto relative group-hover:scale-110 transition-transform duration-500">
+                            <img src="assets/lore_analytics_1774327045317.png" alt="Analytics Icon" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(129,236,255,0.4)]">
+                        </div>
+                        <h2 class="magic-bento-card-v__title">Productivity</h2>
+                        <p class="magic-bento-card-v__description">Optimize your workflow and track your semester progress with AI precision.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="magic-bento-card-v group">
+                    <div class="magic-bento-card-v__header">
+                        <div class="magic-bento-card-v__label">Growth</div>
+                    </div>
+                    <div class="magic-bento-card-v__content">
+                        <div class="w-20 h-20 mb-4 mx-auto relative group-hover:scale-110 transition-transform duration-500">
+                            <img src="assets/lore_dashboard_1774327060324.png" alt="Dashboard Icon" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(129,236,255,0.4)]">
+                        </div>
+                        <h2 class="magic-bento-card-v__title">Self-Learning</h2>
+                        <p class="magic-bento-card-v__description">Personalized learning paths tailored to your cognitive style and pace.</p>
+                    </div>
+                </div>
+                <!-- Card 3 (Large) -->
+                <div class="magic-bento-card-v group">
+                    <div class="magic-bento-card-v__header">
+                        <div class="magic-bento-card-v__label">Mystery</div>
+                    </div>
+                    <div class="magic-bento-card-v__content">
+                        <div class="w-40 h-40 mb-4 mx-auto relative group-hover:scale-110 transition-transform duration-500">
+                            <img src="assets/lore_collaboration_1774327075417.png" alt="Collaboration Icon" class="w-full h-full object-contain filter drop-shadow-[0_0_12px_rgba(221,139,251,0.4)]">
+                        </div>
+                        <h2 class="magic-bento-card-v__title">Technical Skills</h2>
+                        <p class="magic-bento-card-v__description">Master modern technologies with real-time feedback and algorithm visualization. Bridge the theory-practice gap.</p>
+                    </div>
+                </div>
+                <!-- Card 4 (Horizontal) -->
+                <div class="magic-bento-card-v group">
+                    <div class="magic-bento-card-v__header">
+                        <div class="magic-bento-card-v__label">Deep Dive</div>
+                    </div>
+                    <div class="magic-bento-card-v__content">
+                        <div class="w-40 h-40 mb-4 mx-auto relative group-hover:scale-110 transition-transform duration-500">
+                            <img src="assets/lore_automation_1774327091139.png" alt="Automation Icon" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(129,236,255,0.4)]">
+                        </div>
+                        <h2 class="magic-bento-card-v__title">Academic Research</h2>
+                        <p class="magic-bento-card-v__description">Access scholarly archives and automate bibliographic drafting with specialized agents.</p>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="magic-bento-card-v group">
+                    <div class="magic-bento-card-v__header">
+                        <div class="magic-bento-card-v__label">Eloquence</div>
+                    </div>
+                    <div class="magic-bento-card-v__content">
+                        <div class="w-20 h-20 mb-4 mx-auto relative group-hover:scale-110 transition-transform duration-500">
+                            <img src="assets/lore_integration_1774327111423.png" alt="Integration Icon" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(129,236,255,0.4)]">
+                        </div>
+                        <h2 class="magic-bento-card-v__title">Soft Skills</h2>
+                        <p class="magic-bento-card-v__description">Refine your interview and public speaking skills with real-time neural feedback.</p>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="magic-bento-card-v group">
+                    <div class="magic-bento-card-v__header">
+                        <div class="magic-bento-card-v__label">Readiness</div>
+                    </div>
+                    <div class="magic-bento-card-v__content">
+                        <div class="w-20 h-20 mb-4 mx-auto relative group-hover:scale-110 transition-transform duration-500">
+                            <img src="assets/lore_security_1774327126867.png" alt="Security Icon" class="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(45,212,191,0.4)]">
+                        </div>
+                        <h2 class="magic-bento-card-v__title">Career Ready</h2>
+                        <p class="magic-bento-card-v__description">Bridge the gap between theory and practice with industry-standard project simulations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- AGENT SECTION -->
+    <section class="py-24 bg-[#0e0e0e]" id="agents">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-headline font-bold mb-4">Meet Your Personal <span class="text-gradient">AI Agents</span></h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Seven specialized AI agents built to power your academics, practice, and self-learning — all in one place.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Agent 1: PDF Agent -->
+                <div data-border-glow data-bg-glow="180 100 50" class="group">
+                    <div class="border-glow-inner-v p-8 h-full flex flex-col">
+                        <div class="h-64 mb-6 relative overflow-hidden rounded-xl bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/80 transition-all duration-500">
+                            <img src="assets/agent_pdf_1774327158806.png" alt="PDF Agent" class="w-full h-full object-cover float-animation">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">PDF Knowledge Agent</h3>
+                        <p class="text-slate-400 text-sm mb-6 grow">Synthesize complex information from documents instantly with neural OCR.</p>
+                        <a href="/features.html" class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#00E5FF]/20 hover:border-[#00E5FF]/40 text-center transition-all">Start</a>
+                    </div>
+                </div>
+
+                <!-- Agent 2: Apti-Agent -->
+                <div data-border-glow data-bg-glow="280 100 70" class="group">
+                    <div class="border-glow-inner-v p-8 h-full flex flex-col">
+                        <div class="h-64 mb-6 relative overflow-hidden rounded-xl bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/80 transition-all duration-500">
+                            <img src="assets/agent_apti_1774327176559.png" alt="Apti Agent" class="w-full h-full object-cover float-animation" style="animation-delay: -1s">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Apti-Agent</h3>
+                        <p class="text-slate-400 text-sm mb-6 grow">Master logical reasoning and quantitative math via guided neural paths.</p>
+                        <a href="/features.html" class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#dd8bfb]/20 hover:border-[#dd8bfb]/40 text-center transition-all">Start</a>
+                    </div>
+                </div>
+
+                <!-- Agent 3: AlgoChart -->
+                <div data-border-glow data-bg-glow="150 100 40" class="group">
+                    <div class="border-glow-inner-v p-8 h-full flex flex-col">
+                        <div class="h-64 mb-6 relative overflow-hidden rounded-xl bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/80 transition-all duration-500">
+                            <img src="assets/agent_algo_1774332386221.png" alt="Algo Agent" class="w-full h-full object-cover float-animation" style="animation-delay: -2s">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">AlgoChart Agent</h3>
+                        <p class="text-slate-400 text-sm mb-6 grow">Visualize complex algorithms and track practice progress in real-time.</p>
+                        <a href="/features.html" class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#00ffcc]/20 hover:border-[#00ffcc]/40 text-center transition-all">Start</a>
+                    </div>
+                </div>
+
+                <!-- Agent 4: Communication -->
+                <div data-border-glow data-bg-glow="200 100 50" class="group">
+                    <div class="border-glow-inner-v p-8 h-full flex flex-col">
+                        <div class="h-64 mb-6 relative overflow-hidden rounded-xl bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/80 transition-all duration-500">
+                            <img src="assets/agent_comms_1774332404556.png" alt="Comms Agent" class="w-full h-full object-cover float-animation" style="animation-delay: -0.5s">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Communication Assistant</h3>
+                        <p class="text-slate-400 text-sm mb-6 grow">Simulate interviews and refine public speaking with neural feedback.</p>
+                        <a href="/features.html" class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#009dff]/20 hover:border-[#009dff]/40 text-center transition-all">Start</a>
+                    </div>
+                </div>
+
+                <!-- Agent 5: Research -->
+                <div data-border-glow data-bg-glow="50 100 50" class="group">
+                    <div class="border-glow-inner-v p-8 h-full flex flex-col">
+                        <div class="h-64 mb-6 relative overflow-hidden rounded-xl bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/80 transition-all duration-500">
+                            <img src="assets/agent_research_book_1774332423008.png" alt="Research Agent" class="w-full h-full object-cover float-animation" style="animation-delay: -1.5s">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Research Agent</h3>
+                        <p class="text-slate-400 text-sm mb-6 grow">Automate bibliographic verification and academic drafting processes.</p>
+                        <a href="/features.html" class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#facc15]/20 hover:border-[#facc15]/40 text-center transition-all">Start</a>
+                    </div>
+                </div>
+
+                <!-- Agent 6: Email Agent -->
+                <div data-border-glow data-bg-glow="320 100 60" class="group">
+                    <div class="border-glow-inner-v p-8 h-full flex flex-col">
+                        <div class="h-64 mb-6 relative overflow-hidden rounded-xl bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/80 transition-all duration-500">
+                            <img src="assets/agent_email.png" alt="Email Agent" class="w-full h-full object-cover float-animation" style="animation-delay: -2.5s">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Email Agent</h3>
+                        <p class="text-slate-400 text-sm mb-6 grow">Automate professional correspondence and manage your inbox with neural drafting.</p>
+                        <a href="/features.html" class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#ff80bf]/20 hover:border-[#ff80bf]/40 text-center transition-all">Start</a>
+                    </div>
+                </div>
+
+                <!-- Agent 7: Resume Agent -->
+                <div data-border-glow data-bg-glow="45 100 50" class="group">
+                    <div class="border-glow-inner-v p-8 h-full flex flex-col">
+                        <div class="h-64 mb-6 relative overflow-hidden rounded-xl bg-slate-900/50 flex items-center justify-center group-hover:bg-slate-900/80 transition-all duration-500">
+                            <img src="assets/agent_resume.png" alt="Resume Agent" class="w-full h-full object-cover float-animation" style="animation-delay: -3s">
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Resume Agent</h3>
+                        <p class="text-slate-400 text-sm mb-6 grow">ATS scoring, resume improvement, and intelligent generation tailored to your career goals.</p>
+                        <a href="/features.html" class="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-sm font-bold tracking-widest uppercase hover:bg-[#fbbf24]/20 hover:border-[#fbbf24]/40 text-center transition-all">Start</a>
+                    </div>
+                </div>
+            </div>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0e0e0e] w-full py-8 px-8 border-t border-white/5">
+        <div class="flex justify-center items-center max-w-7xl mx-auto">
+            <div class="text-xs tracking-widest uppercase text-slate-600 font-label">© 2025 EduVerse &nbsp;·&nbsp; All rights reserved</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize MagicBento Grid
+            new MagicBento('#magic-grid', {
+                glowColor: '132, 0, 255',
+                enableTilt: true
+            });
+        });
+    </script>
+</body>
+</html>

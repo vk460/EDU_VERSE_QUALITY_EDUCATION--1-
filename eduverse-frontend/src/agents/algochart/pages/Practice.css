@@ -1,0 +1,211 @@
+.practice-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #0f141e; /* Extremely dark navy for IDE feel */
+  height: 100vh;
+}
+
+.practice-header {
+   height: 64px;
+   padding: 0 1.5rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #131b2d; /* Match sidebar */
+   border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.practice-title {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+.back-link {
+   color: var(--text-sidebar);
+   display: flex; align-items: center; justify-content: center;
+   width: 32px; height: 32px;
+   border-radius: var(--radius-sm);
+   transition: background-color 0.2s;
+}
+.back-link:hover {
+   background-color: rgba(255,255,255,0.1);
+   color: white;
+}
+
+.practice-title h1 {
+   color: white;
+   font-size: 1.1rem;
+   font-weight: 600;
+   margin-bottom: 0.1rem;
+}
+
+.goal-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.goal-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: var(--text-sidebar);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.goal-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: white;
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    width: 300px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.goal-input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-primary);
+}
+
+.pane-header {
+    padding: 0.5rem 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-sidebar);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.empty-output {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--text-sidebar);
+    text-align: center;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.empty-output p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.practice-actions {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+}
+
+.reset-btn {
+   display: flex; align-items: center; gap: 0.4rem;
+   color: var(--text-sidebar);
+   font-size: 0.875rem;
+   padding: 0.5rem 0.75rem;
+}
+.reset-btn:hover { color: white; }
+
+.action-btn {
+   display: flex; align-items: center; gap: 0.5rem;
+   font-size: 0.875rem; font-weight: 500;
+   padding: 0.5rem 1rem;
+   border-radius: var(--radius-sm);
+   transition: all 0.2s;
+}
+
+.run-btn {
+   background-color: rgba(249, 115, 22, 0.15); /* Orange tint */
+   color: var(--accent-primary);
+}
+.run-btn:hover {
+   background-color: rgba(249, 115, 22, 0.25);
+}
+
+.submit-btn {
+   background-color: var(--accent-primary);
+   color: white;
+}
+.submit-btn:hover {
+   background-color: var(--accent-hover);
+}
+
+.practice-workspace {
+   flex: 1;
+   display: flex;
+   overflow: hidden;
+}
+
+.editor-pane {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   border-right: 1px solid rgba(255,255,255,0.05);
+}
+
+.code-editor {
+   flex: 2; /* Take more space than stdin */
+   background-color: transparent;
+   border: none;
+   padding: 1.5rem;
+   color: #e5e7eb;
+   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+   font-size: 0.95rem;
+   line-height: 1.6;
+   resize: none;
+   outline: none;
+}
+
+.stdin-header {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stdin-editor {
+    height: 120px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
+    padding: 1rem 1.5rem;
+    color: #9ca3af;
+    font-family: 'Consolas', monospace;
+    font-size: 0.875rem;
+    resize: none;
+    outline: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.stdin-editor::placeholder {
+    color: rgba(156, 163, 175, 0.3);
+}
+
+.output-pane {
+   width: 400px; /* Fixed or min-width based on preference */
+   display: flex;
+   flex-direction: column;
+   background-color: #131b2d;
+}
+
+.output-header {
+   padding: 0.75rem 1.25rem;
+   color: white;
+   font-size: 0.875rem;
+   font-weight: 500;
+   border-bottom: 1px solid rgba(255,255,255,0.05);
+   background-color: rgba(255,255,255,0.02);
+}
+
+.output-content {
+   padding: 1.25rem;
+   color: var(--text-sidebar);
+   font-family: 'Consolas', monospace;
+   font-size: 0.875rem;
+}

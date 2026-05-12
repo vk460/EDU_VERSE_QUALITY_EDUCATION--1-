@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+google-generativeai
+python-dotenv
+sqlmodel
+psycopg2-binary
+jinja2
+python-multipart
+httpx
+pymupdf
+ollama
+langdetect
+requests
+bleach
+eventlet
+python-socketio
+pillow

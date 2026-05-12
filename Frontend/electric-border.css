@@ -1,0 +1,67 @@
+.electric-border-v {
+  --eb-color: #81ecff;
+  --electric-light-color: var(--eb-color); /* Simplified for vanilla CSS */
+  position: relative;
+  border-radius: inherit;
+  overflow: visible;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eb-canvas-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.eb-canvas {
+  display: block;
+}
+
+.eb-layers {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.eb-glow-1,
+.eb-glow-2,
+.eb-background-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.eb-glow-1 {
+  border: 2px solid rgba(129, 236, 255, 0.4);
+  filter: blur(1px);
+}
+
+.eb-glow-2 {
+  border: 2px solid var(--eb-color);
+  filter: blur(4px);
+  opacity: 0.5;
+}
+
+.eb-background-glow {
+  z-index: -1;
+  transform: scale(1.1);
+  filter: blur(32px);
+  opacity: 0.15;
+  background: linear-gradient(-30deg, var(--eb-color), transparent, var(--eb-color));
+}
+
+/* Ensure content is above everything */
+.eb-content, .relative.z-10 {
+  position: relative;
+  z-index: 5;
+}

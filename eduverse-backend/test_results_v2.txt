@@ -1,0 +1,24 @@
+
+--- Testing Root ---
+Status: 200
+Response: {'message': 'EduVerse Unified Backend is running'}
+
+--- Testing Aptitude Agent ---
+Status: 500
+Response: {"detail":"400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"}
+
+--- Testing Email Generation ---
+Status: 500
+Response: {"detail":"400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"}
+
+--- Testing PDF Chat ---
+Status: 500
+Response: {"detail":"400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"}
+
+--- Testing Comms Agent (AI Ask) ---
+Status: 500
+Response: {"detail":"400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"}
+
+--- Testing Research Agent ---
+Status: 404
+Response: {"detail":"Not Found"}

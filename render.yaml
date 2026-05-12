@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: eduverse-backend
+    env: python
+    buildCommand: cd eduverse-backend && pip install -r requirements.txt
+    startCommand: cd eduverse-backend && uvicorn main:sio_app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: eduverse-db
+          property: connectionString
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+
+databases:
+  - name: eduverse-db
+    plan: free

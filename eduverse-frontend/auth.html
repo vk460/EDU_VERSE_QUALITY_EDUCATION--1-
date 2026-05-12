@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>EduVerse | Authenticate</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS -->
+    
+    
+
+    <style>
+        .glass-card {
+            background: rgba(26, 25, 25, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(129, 236, 255, 0.15);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #81ecff, #dd8bfb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gradient {
+            background: linear-gradient(to right, #81ecff, #dd8bfb);
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 15px rgba(129, 236, 255, 0.2);
+            border-color: rgba(129, 236, 255, 0.5);
+        }
+    </style>
+    <link rel="stylesheet" href="electric-border.css">
+    <script src="electric-border.js" type="module" defer></script>
+<link rel="stylesheet" href="/index.css"></head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary overflow-x-hidden min-h-screen flex flex-col">
+
+<!-- NAVIGATION -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl dark:bg-[#0e0e0e]/60 shadow-[0_0_20px_rgba(0,229,255,0.08)]">
+    <div class="flex justify-between items-center px-8 py-5 max-w-7xl mx-auto">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_12px_rgba(0,229,255,0.3)]">
+                <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 5V11C4 16.5 7.5 20.5 12 22C16.5 20.5 20 16.5 20 11V5L12 2Z" fill="url(#navbar-logo-grad)"/>
+                    <path d="M9 10H15M9 13H15M9 16H13" stroke="#0e0e0e" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="12" cy="7" r="1.5" fill="#0e0e0e"/>
+                    <defs>
+                        <linearGradient id="navbar-logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00E5FF"/>
+                            <stop offset="1" stop-color="#dd8bfb"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-[#00E5FF] to-[#dd8bfb] bg-clip-text text-transparent" style="font-family:'Orbitron',sans-serif">EduVerse</span>
+        </a>
+        <div class="flex items-center gap-3">
+            <a href="features.html" class="font-label text-xs uppercase tracking-widest text-slate-400 hover:text-white transition-colors px-3 py-2">Agents</a>
+            <a href="index.html" class="font-label text-xs uppercase tracking-widest text-slate-400 hover:text-[#00E5FF] px-4 py-2 transition-all">Back to Home</a>
+        </div>
+    </div>
+</nav>
+
+<main class="flex-grow pt-32 pb-20 px-8 flex flex-col items-center justify-center relative overflow-hidden">
+    <!-- Ambient Lights -->
+    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 blur-[120px] rounded-full"></div>
+
+    <div class="w-full max-w-md z-10 space-y-12">
+        
+        <!-- LOGIN SECTION -->
+        <div id="login-section" data-electric-border data-eb-color="#81ecff" class="p-[1px] rounded-3xl transition-all duration-500">
+            <div class="glass-card p-10 rounded-[23px] eb-content">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-headline font-bold mb-2">Welcome <span class="text-gradient">Back</span></h2>
+                    <p class="text-on-surface-variant text-sm">Securely log in to your neural workspace.</p>
+                </div>
+                
+                <form id="login-form" class="space-y-5" onsubmit="handleAuthSubmit(event, 'login')">
+                    <div class="space-y-2">
+                        <label class="text-xs font-label uppercase tracking-widest text-primary/80 ml-1">Email Protocol</label>
+                        <input type="email" id="login-email" placeholder="neural@eduverse.ai" required
+                               class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all input-glow">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-label uppercase tracking-widest text-primary/80 ml-1">Secure Cipher</label>
+                        <input type="password" placeholder="••••••••" required
+                               class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all input-glow">
+                    </div>
+                    <button type="submit" class="w-full py-4 rounded-xl btn-gradient text-background font-bold uppercase tracking-[0.2em] text-xs hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(129,236,255,0.3)] mt-4">
+                        Get Started
+                    </button>
+                </form>
+                <div class="mt-8 pt-8 border-t border-white/5 text-center">
+                    <p class="text-xs text-on-surface-variant font-label uppercase tracking-widest mb-6">New to EduVerse?</p>
+                    <button onclick="toggleAuth('register')" class="w-full py-4 rounded-xl border border-primary/30 text-primary font-bold uppercase tracking-[0.2em] text-xs hover:bg-primary/10 active:scale-[0.98] transition-all">
+                        Register with EduVerse
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTER SECTION -->
+        <div id="register-section" class="hidden glass-card p-10 rounded-3xl transition-all duration-500">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-headline font-bold mb-2">Initialize <span class="text-gradient">Profile</span></h3>
+                <p class="text-on-surface-variant text-sm">Join the next generation of academic excellence.</p>
+            </div>
+            
+            <form id="register-form" class="space-y-5" onsubmit="handleAuthSubmit(event, 'register')">
+                <div class="space-y-2">
+                    <label class="text-xs font-label uppercase tracking-widest text-on-surface-variant ml-1">Full Identity</label>
+                    <div class="relative group">
+                        <input type="text" id="reg-name" placeholder="Alex Rivers" required
+                               class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:ring-1 focus:ring-secondary/50 transition-all">
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-label uppercase tracking-widest text-on-surface-variant ml-1">Digital Mail</label>
+                    <input type="email" id="reg-email" placeholder="alex@academy.org" required
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:ring-1 focus:ring-secondary/50 transition-all">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-label uppercase tracking-widest text-on-surface-variant ml-1">Comms Link (Phone)</label>
+                    <input type="tel" id="reg-phone" placeholder="+1 (555) 000-0000" required
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:ring-1 focus:ring-secondary/50 transition-all">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-xs font-label uppercase tracking-widest text-on-surface-variant ml-1">Private Key</label>
+                    <input type="password" placeholder="••••••••" required
+                           class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm focus:outline-none focus:ring-1 focus:ring-secondary/50 transition-all">
+                </div>
+                <button type="submit" class="w-full py-4 rounded-xl border border-secondary/30 text-secondary font-bold uppercase tracking-[0.2em] text-xs hover:bg-secondary/10 active:scale-[0.98] transition-all mt-4">
+                    Create Identity
+                </button>
+            </form>
+            <div class="mt-8 text-center">
+                <button onclick="toggleAuth('login')" class="text-xs text-on-surface-variant font-label uppercase tracking-widest hover:text-white transition-all">
+                    Already have an account? <span class="text-primary ml-2 font-bold">Login</span>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            function toggleAuth(view) {
+                const loginSection = document.getElementById('login-section');
+                const registerSection = document.getElementById('register-section');
+                
+                if (view === 'register') {
+                    loginSection.classList.add('hidden');
+                    registerSection.classList.remove('hidden');
+                }
+            }
+
+            function handleAuthSubmit(e, type) {
+                e.preventDefault();
+                
+                let users = JSON.parse(localStorage.getItem('eduverse_users') || '{}');
+                let activeEmail = '';
+
+                if (type === 'register') {
+                    const name = document.getElementById('reg-name').value;
+                    const email = document.getElementById('reg-email').value;
+                    const phone = document.getElementById('reg-phone').value;
+                    
+                    users[email] = { name, phone, email };
+                    activeEmail = email;
+                } else {
+                    const email = document.getElementById('login-email').value;
+                    activeEmail = email;
+                    // If user doesn't exist, create a shell with just email
+                    if (!users[email]) {
+                        users[email] = { name: 'New User', phone: 'Not Provided', email };
+                    }
+                }
+                
+                localStorage.setItem('eduverse_users', JSON.stringify(users));
+                localStorage.setItem('eduverse_active_user', activeEmail);
+                localStorage.setItem('eduverse_logged_in', 'true');
+                
+                window.location.href = 'index.html';
+            }
+        </script>
+
+    </div>
+</main>
+
+<footer class="bg-[#0e0e0e] w-full py-8 px-8 border-t border-white/5 mt-auto">
+    <div class="flex justify-center items-center max-w-7xl mx-auto">
+        <div class="text-xs tracking-widest uppercase text-slate-600 font-label">© 2025 EduVerse &nbsp;·&nbsp; All rights reserved</div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/algochart/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduVerse | AlgoChart Agent</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+      body { background: #0e0e0e; margin: 0; font-family: 'Inter', sans-serif; }
+    </style>
+  <link rel="stylesheet" href="/index.css"></head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/agents/algochart/main.jsx"></script>
+    <script type="module">
+        import CONFIG from '/config.js';
+        window.CONFIG = CONFIG;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+/* eduverse index.css */
+:root {
+  --primary: #00E5FF;
+  --secondary: #dd8bfb;
+  --background: #0e0e0e;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: white;
+  font-family: 'Inter', sans-serif;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.liquid-ether-container {
+  pointer-events: none;
+}

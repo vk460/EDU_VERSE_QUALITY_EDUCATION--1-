@@ -1,0 +1,336 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: var(--bg-main);
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease, transform 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sidebar.closed {
+  width: 0;
+  padding: 0;
+}
+
+.sidebar-content {
+  flex: 1;
+  padding: 0.5rem;
+  overflow-y: auto;
+  min-width: 260px; /* keeps content width stable while animating */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.new-chat-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  text-align: left;
+}
+
+.new-chat-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-footer {
+  padding: 0.5rem; border-top: 1px solid var(--border-color);
+  min-width: 260px;
+}
+
+/* Main Content Area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-main);
+}
+
+.chat-header {
+  height: 3rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  margin-left: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.sidebar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.model-selector {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 40px; /* balance out the toggle button */
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  pointer-events: none; /* Just a label for now */
+}
+
+
+.chat-container {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+/* Push messages container up */
+.messages-wrapper {
+  flex: 1;
+}
+
+/* Message Strips (ChatGPT Style spans full width but inner content is max-width) */
+.message-strip {
+  width: 100%;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.message-strip.user {
+  background-color: var(--bg-user);
+}
+
+.message-strip.assistant {
+  background-color: var(--bg-assistant);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.message-content {
+  max-width: var(--max-content-width);
+  width: 100%;
+  padding: 0 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 0.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar.user {
+  background-color: #5436DA; /* A purple tone often used for generic user in CGPT */
+  color: white;
+}
+
+.avatar.assistant {
+  background-color: var(--accent-primary);
+  color: white;
+}
+
+.message-text {
+  flex: 1;
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-top: 0.1rem;
+  white-space: pre-wrap;
+}
+
+.message-text p {
+  margin-bottom: 1rem;
+}
+
+.message-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Typing Indicator (ChatGPT block cursor style or dots) */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.cursor-blink {
+  width: 8px;
+  height: 18px;
+  background-color: var(--text-primary);
+  animation: blink 1s step-end infinite;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Input Area */
+.input-area-wrapper {
+  width: 100%;
+  padding: 1rem 0 2rem 0;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  bottom: 0;
+  background-image: linear-gradient(180deg, rgba(53,55,64,0), #353740 58.85%);
+}
+
+.input-container {
+  max-width: var(--max-content-width);
+  width: 100%;
+  position: relative;
+  background-color: var(--bg-input);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-input);
+  display: flex;
+  align-items: flex-end;
+  padding: 0.25rem 0.5rem 0.25rem 1rem;
+  margin: 0 1.5rem;
+}
+
+.chat-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0.6rem 0;
+  resize: none;
+  min-height: 48px;
+  max-height: 200px;
+  line-height: 1.5;
+}
+
+.chat-input::placeholder {
+  color: var(--text-muted);
+}
+
+.send-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  color: white;
+  background-color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.4rem 0.1rem;
+  transition: background-color 0.2s ease;
+}
+
+.send-btn:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+
+.send-btn:disabled {
+  background-color: transparent;
+  color: var(--text-muted);
+  cursor: default;
+}
+
+/* Welcome Screen */
+.welcome-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.welcome-title {
+  font-size: 2.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.welcome-features {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: var(--max-content-width);
+}
+
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  width: 200px;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    z-index: 100;
+    height: 100vh;
+  }
+}

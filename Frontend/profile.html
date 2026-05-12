@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>EduVerse | Profile</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#81ecff",
+                        "secondary": "#dd8bfb",
+                        "background": "#0e0e0e",
+                        "surface": "#1a1919",
+                        "on-surface": "#ffffff",
+                        "on-surface-variant": "#adaaaa",
+                    },
+                    fontFamily: {
+                        "headline": ["Orbitron", "Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        .glass-card {
+            background: rgba(26, 25, 25, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(129, 236, 255, 0.15);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #81ecff, #dd8bfb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-gradient {
+            background: linear-gradient(to right, #81ecff, #dd8bfb);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary overflow-x-hidden min-h-screen flex flex-col">
+
+<!-- NAVIGATION -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl dark:bg-[#0e0e0e]/60 shadow-[0_0_20px_rgba(0,229,255,0.08)]">
+    <div class="flex justify-between items-center px-8 py-5 max-w-7xl mx-auto">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_12px_rgba(0,229,255,0.3)]">
+                <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L4 5V11C4 16.5 7.5 20.5 12 22C16.5 20.5 20 16.5 20 11V5L12 2Z" fill="url(#navbar-logo-grad)"/>
+                    <path d="M9 10H15M9 13H15M9 16H13" stroke="#0e0e0e" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="12" cy="7" r="1.5" fill="#0e0e0e"/>
+                    <defs>
+                        <linearGradient id="navbar-logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#00E5FF"/>
+                            <stop offset="1" stop-color="#dd8bfb"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-[#00E5FF] to-[#dd8bfb] bg-clip-text text-transparent" style="font-family:'Orbitron',sans-serif">EduVerse</span>
+        </a>
+        <div class="flex items-center gap-3">
+            <a href="features.html" class="font-label text-xs uppercase tracking-widest text-slate-400 hover:text-white transition-colors px-3 py-2">Agents</a>
+            <button onclick="handleLogout()" class="text-slate-400 hover:text-red-400 border border-white/10 hover:border-red-400/40 py-2 px-4 rounded-lg text-xs uppercase tracking-widest transition-all font-label">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<main class="flex-grow pt-40 pb-20 px-8 flex flex-col items-center justify-start relative overflow-hidden">
+    <!-- Ambient Lights -->
+    <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/10 blur-[120px] rounded-full"></div>
+
+    <div class="w-full max-w-2xl z-10">
+        <div class="glass-card rounded-3xl overflow-hidden">
+            <!-- Profile Header -->
+            <div class="bg-gradient-to-r from-primary/10 to-secondary/10 p-12 border-b border-white/5 relative">
+                <div class="flex items-center gap-8">
+                    <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-background shadow-[0_0_20px_rgba(129,236,255,0.4)]">
+                        <span class="material-symbols-outlined text-4xl font-bold">account_circle</span>
+                    </div>
+                    <div>
+                        <h1 id="display-name" class="text-4xl font-headline font-bold mb-2">Alex Rivers</h1>
+                        <p class="text-on-surface-variant text-sm font-label uppercase tracking-widest">Neural Citizen · Level 1</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="p-12 space-y-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-label uppercase tracking-[0.2em] text-primary/60 block ml-1">Full Identity</label>
+                        <div id="name-view" class="text-xl font-medium text-on-surface pl-1">Alex Rivers</div>
+                        <input id="name-input" type="text" class="hidden w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all">
+                    </div>
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-label uppercase tracking-[0.2em] text-primary/60 block ml-1">Comms Link (Phone)</label>
+                        <div id="phone-view" class="text-xl font-medium text-on-surface pl-1">+1 (555) 000-0000</div>
+                        <input id="phone-input" type="tel" class="hidden w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/50 transition-all">
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-white/5 flex gap-4">
+                    <button id="edit-btn" onclick="toggleEdit(true)" class="px-8 py-3 rounded-xl border border-primary/30 text-primary text-xs font-bold uppercase tracking-widest hover:bg-primary/10 transition-all">
+                        Edit Profile
+                    </button>
+                    <button id="save-btn" onclick="saveProfile()" class="hidden px-8 py-3 rounded-xl btn-gradient text-background text-xs font-bold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_0_15px_rgba(129,236,255,0.3)]">
+                        Save Changes
+                    </button>
+                    <button id="cancel-btn" onclick="toggleEdit(false)" class="hidden px-8 py-3 rounded-xl bg-white/5 text-on-surface-variant text-xs font-bold uppercase tracking-widest hover:text-white transition-all">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-8 text-center">
+            <a href="index.html" class="text-xs text-on-surface-variant font-label uppercase tracking-widest hover:text-primary transition-all">
+                ← Return to Archive
+            </a>
+        </div>
+    </div>
+</main>
+
+<script>
+    function loadProfile() {
+        const loggedIn = localStorage.getItem('eduverse_logged_in') === 'true';
+        if (!loggedIn) {
+            window.location.href = 'auth.html';
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('eduverse_users') || '{}');
+        const activeEmail = localStorage.getItem('eduverse_active_user');
+        const user = users[activeEmail] || { name: 'New Citizen', phone: 'Not Provided' };
+
+        document.getElementById('display-name').innerText = user.name;
+        document.getElementById('name-view').innerText = user.name;
+        document.getElementById('phone-view').innerText = user.phone;
+        
+        document.getElementById('name-input').value = user.name;
+        document.getElementById('phone-input').value = user.phone;
+    }
+
+    function toggleEdit(editing) {
+        document.getElementById('name-view').classList.toggle('hidden', editing);
+        document.getElementById('phone-view').classList.toggle('hidden', editing);
+        document.getElementById('name-input').classList.toggle('hidden', !editing);
+        document.getElementById('phone-input').classList.toggle('hidden', !editing);
+        
+        document.getElementById('edit-btn').classList.toggle('hidden', editing);
+        document.getElementById('save-btn').classList.toggle('hidden', !editing);
+        document.getElementById('cancel-btn').classList.toggle('hidden', !editing);
+    }
+
+    function saveProfile() {
+        const newName = document.getElementById('name-input').value;
+        const newPhone = document.getElementById('phone-input').value;
+
+        const users = JSON.parse(localStorage.getItem('eduverse_users') || '{}');
+        const activeEmail = localStorage.getItem('eduverse_active_user');
+        
+        if (activeEmail && users[activeEmail]) {
+            users[activeEmail].name = newName;
+            users[activeEmail].phone = newPhone;
+            localStorage.setItem('eduverse_users', JSON.stringify(users));
+        }
+
+        loadProfile();
+        toggleEdit(false);
+    }
+
+    function handleLogout() {
+        localStorage.removeItem('eduverse_logged_in');
+        window.location.href = 'index.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProfile);
+</script>
+
+</body>
+</html>
