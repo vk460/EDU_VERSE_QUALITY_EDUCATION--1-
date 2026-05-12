@@ -51,3 +51,7 @@ share/
 .parcel-cache
 .turbo/
 .next/
+
+# Custom venvs
+*venv*
+
