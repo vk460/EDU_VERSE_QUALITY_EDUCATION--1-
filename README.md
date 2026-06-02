@@ -4,7 +4,7 @@
 (Add YouTube video link here after upload)
 
 ## Project Description
-EduVerse is a futuristic, AI-driven holistic educational platform designed to provide a comprehensive suite of intelligent tools for students and professionals. Featuring a premium 3D interface and immersive "Quantum Cinema" aesthetics, the platform leverages multiple Large Language Models (LLMs) to power specialized agents for real-time interaction, research, and skill development.
+EduVerse is a futuristic, AI-driven holistic educational platform designed specifically for engineering students to help them prepare for placement drives, technical tests, and professional interviews. Featuring a premium 3D interface and immersive "Quantum Cinema" aesthetics, the platform leverages multiple Large Language Models (LLMs) to power specialized agents for real-time interaction, research, and skill development.
 
 Key features include:
 - **AI-VTuber Communication Agent**: Interactive interview and speech coaching with real-time lip-sync and 3D avatars.
